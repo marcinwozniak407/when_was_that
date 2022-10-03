@@ -35,10 +35,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('When was that?'),
-        ),
-        body: Image.asset('assets/icon/icon.png'));
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('When was that?'),
+      ),
+      body: Image.asset('assets/icon/icon.png'),
+    );
   }
 }
