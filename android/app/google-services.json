@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "666477877313",
+    "project_id": "when-was-that-407",
+    "storage_bucket": "when-was-that-407.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666477877313:android:eda5fc64bec9f1445a0ec0",
+        "android_client_info": {
+          "package_name": "com.marcinwozniak.when_was_that"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666477877313-59ktsjnj7dapu0md93hs2hjfrghgqhvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh27sHd1zG8v7GmRSdF6CUZA14XgK9jcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666477877313-59ktsjnj7dapu0md93hs2hjfrghgqhvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
