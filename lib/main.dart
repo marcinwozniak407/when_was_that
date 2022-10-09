@@ -24,26 +24,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const FirstPage());
-  }
-}
-
-class FirstPage extends StatefulWidget {
-  const FirstPage({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> {
-  @override
-  Widget build(BuildContext context) {
-    return const RootPage();
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const RootPage(),
+    );
   }
 }
 
@@ -55,13 +40,14 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          final user = snapshot.data;
-          if (user == null) {
-            return const LoginPage();
-          }
-          return HomePage(user: user);
-        });
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        final user = snapshot.data;
+        if (user == null) {
+          return const LoginPage();
+        }
+        return HomePage(user: user);
+      },
+    );
   }
 }
