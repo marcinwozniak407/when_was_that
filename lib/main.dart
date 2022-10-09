@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:when_was_that/app/home/home_page.dart';
+import 'package:when_was_that/app/login/login_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,20 +27,20 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage());
+        home: const FirstPage());
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+class FirstPage extends StatefulWidget {
+  const FirstPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<FirstPage> createState() => _FirstPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return const RootPage();
@@ -57,25 +59,9 @@ class RootPage extends StatelessWidget {
         builder: (context, snapshot) {
           final user = snapshot.data;
           if (user == null) {
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: const Text("When was that?"),
-              ),
-              body: const Center(
-                child: Text("Jesteś niezalogowany"),
-              ),
-            );
+            return const LoginPage();
           }
-          return Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: const Text('When was that?'),
-            ),
-            body: Center(
-              child: Text('Jesteś zalogowany jako ${user.email}'),
-            ),
-          );
+          return HomePage(user: user);
         });
   }
 }
