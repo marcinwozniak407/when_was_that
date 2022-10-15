@@ -22,17 +22,16 @@ class LoginPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Image(
                 image: AssetImage('assets/icon/icon.png'),
               ),
               Text(
                 'SIGN IN',
-                style: GoogleFonts.notoSerif(fontSize: 40, color: Colors.blue),
+                style: GoogleFonts.notoSerif(fontSize: 20, color: Colors.blue),
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               TextField(
                 controller: emailController,
@@ -43,7 +42,7 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 decoration: const InputDecoration(hintText: "password"),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () async {
                   try {
@@ -60,7 +59,7 @@ class LoginPage extends StatelessWidget {
                   );
                 },
                 child: const Text('Sign in'),
-              )
+              ),
             ],
           ),
         ),
