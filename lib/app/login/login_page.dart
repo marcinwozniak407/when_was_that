@@ -32,6 +32,8 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(children: [
             const Image(
               image: AssetImage('assets/icon/icon.png'),
+              height: 230,
+              width: 230,
             ),
             Text(
               isCreatingAccount == true ? 'SIGN UP' : 'SIGN IN',
