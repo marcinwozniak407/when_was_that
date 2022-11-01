@@ -30,11 +30,22 @@ class _LoginPageState extends State<LoginPage> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                'Hello!',
+                style: GoogleFonts.manrope(
+                    fontSize: 40,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 20),
               Text(
                 isCreatingAccount == true ? 'SIGN UP' : 'SIGN IN',
-                style: GoogleFonts.notoSerif(fontSize: 20, color: Colors.blue),
+                style: GoogleFonts.notoSerif(
+                    fontSize: 20,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 5,
@@ -51,34 +62,39 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               Text(errorMessage),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () async {
-                  if (isCreatingAccount == true) {
-                    //rejestracja
-                    try {
-                      await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: widget.emailController.text,
-                              password: widget.passwordController.text);
-                    } catch (error) {
-                      setState(() {
-                        errorMessage = error.toString();
-                      });
+              Container(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (isCreatingAccount == true) {
+                      //rejestracja
+                      try {
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: widget.emailController.text,
+                                password: widget.passwordController.text);
+                      } catch (error) {
+                        setState(() {
+                          errorMessage = error.toString();
+                        });
+                      }
+                    } else {
+                      //logowanie
+                      try {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: widget.emailController.text,
+                            password: widget.passwordController.text);
+                      } catch (error) {
+                        setState(() {
+                          errorMessage = error.toString();
+                        });
+                      }
                     }
-                  } else {
-                    //logowanie
-                    try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: widget.emailController.text,
-                          password: widget.passwordController.text);
-                    } catch (error) {
-                      setState(() {
-                        errorMessage = error.toString();
-                      });
-                    }
-                  }
-                },
-                child: Text(isCreatingAccount == true ? 'Sign up' : 'Sign in'),
+                  },
+                  child:
+                      Text(isCreatingAccount == true ? 'Sign up' : 'Sign in'),
+                ),
               ),
               const SizedBox(height: 20),
               if (isCreatingAccount == false) ...[
@@ -92,13 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
               if (isCreatingAccount == true) ...[
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        isCreatingAccount = false;
-                      });
-                    },
-                    child: const Text('Do you have an account?'))
+                Column(
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isCreatingAccount = false;
+                          });
+                        },
+                        child: const Text('Do you have an account?')),
+                  ],
+                )
               ]
             ],
           ),
