@@ -31,11 +31,6 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              const Image(
-                image: AssetImage('assets/icon/icon.png'),
-                height: 210,
-                width: 210,
-              ),
               const SizedBox(height: 20),
               Text(
                 isCreatingAccount == true ? 'SIGN UP' : 'SIGN IN',
