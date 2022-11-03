@@ -59,9 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 decoration: const InputDecoration(hintText: "password"),
               ),
-              const SizedBox(height: 20),
               Text(errorMessage),
-              const SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    isCreatingAccount == true;
+                  });
+                },
+                child: const Text('Forgot password?',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.grey)),
+              ),
               Container(
                 height: 45,
                 width: double.infinity,
@@ -104,7 +113,8 @@ class _LoginPageState extends State<LoginPage> {
                       isCreatingAccount = true;
                     });
                   },
-                  child: const Text('Create an account'),
+                  child: const Text('Create an account',
+                      style: TextStyle(decoration: TextDecoration.underline)),
                 ),
               ],
               if (isCreatingAccount == true) ...[
