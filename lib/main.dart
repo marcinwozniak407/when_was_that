@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
           ),
           splashIconSize: double.infinity,
           splashTransition: SplashTransition.scaleTransition,
-          nextScreen: LoginPage()),
+          nextScreen: const RootPage()),
     );
   }
 }
