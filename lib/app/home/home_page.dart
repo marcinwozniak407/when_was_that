@@ -19,6 +19,18 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text('Jesteś zalogowany jako ${user.email}'),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'My account',
+          ),
+        ],
+      ),
     );
   }
 }
