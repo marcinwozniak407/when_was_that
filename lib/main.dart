@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +28,14 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RootPage(),
+      home: AnimatedSplashScreen(
+          duration: 2000,
+          splash: const Image(
+            image: AssetImage('assets/icon/icon.png'),
+          ),
+          splashIconSize: double.infinity,
+          splashTransition: SplashTransition.scaleTransition,
+          nextScreen: const RootPage()),
     );
   }
 }

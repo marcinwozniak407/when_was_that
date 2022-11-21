@@ -2,13 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({
     Key? key,
   }) : super(key: key);
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  var isCreatingAccount = false;
+  var errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -22,45 +30,106 @@ class LoginPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Image(
-                image: AssetImage('assets/icon/icon.png'),
-              ),
               Text(
-                'SIGN IN',
-                style: GoogleFonts.notoSerif(fontSize: 40, color: Colors.blue),
+                'Hello!',
+                style: GoogleFonts.manrope(
+                    fontSize: 40,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                isCreatingAccount == true ? 'SIGN UP' : 'SIGN IN',
+                style: GoogleFonts.notoSerif(
+                    fontSize: 20,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               TextField(
-                controller: emailController,
+                controller: widget.emailController,
                 decoration: const InputDecoration(hintText: "e-mail"),
               ),
               TextField(
-                controller: passwordController,
+                controller: widget.passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(hintText: "password"),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    // ignore: avoid_print
-                    print(error);
-                  }
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: emailController.text,
-                    password: passwordController.text,
-                  );
+              Text(errorMessage),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    isCreatingAccount == true;
+                  });
                 },
-                child: const Text('Sign in'),
-              )
+                child: const Text('Forgot password?',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.grey)),
+              ),
+              Container(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (isCreatingAccount == true) {
+                      //rejestracja
+                      try {
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: widget.emailController.text,
+                                password: widget.passwordController.text);
+                      } catch (error) {
+                        setState(() {
+                          errorMessage = error.toString();
+                        });
+                      }
+                    } else {
+                      //logowanie
+                      try {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: widget.emailController.text,
+                            password: widget.passwordController.text);
+                      } catch (error) {
+                        setState(() {
+                          errorMessage = error.toString();
+                        });
+                      }
+                    }
+                  },
+                  child:
+                      Text(isCreatingAccount == true ? 'Sign up' : 'Sign in'),
+                ),
+              ),
+              const SizedBox(height: 20),
+              if (isCreatingAccount == false) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isCreatingAccount = true;
+                    });
+                  },
+                  child: const Text('Create an account',
+                      style: TextStyle(decoration: TextDecoration.underline)),
+                ),
+              ],
+              if (isCreatingAccount == true) ...[
+                Column(
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isCreatingAccount = false;
+                          });
+                        },
+                        child: const Text('Do you have an account?')),
+                  ],
+                )
+              ]
             ],
           ),
         ),
