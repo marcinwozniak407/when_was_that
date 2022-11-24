@@ -53,11 +53,13 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: widget.emailController,
                 decoration: const InputDecoration(hintText: "e-mail"),
+                maxLength: 40,
               ),
               TextField(
                 controller: widget.passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(hintText: "password"),
+                maxLength: 20,
               ),
               Text(errorMessage),
               TextButton(
