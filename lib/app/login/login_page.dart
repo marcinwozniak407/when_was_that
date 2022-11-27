@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:when_was_that/app/reset/reset_page.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -76,9 +77,16 @@ class _LoginPageState extends State<LoginPage> {
               Text(errorMessage),
               TextButton(
                 onPressed: () {
-                  setState(() {
-                    isCreatingAccount == true;
-                  });
+                  setState(
+                    () {
+                      isCreatingAccount == true;
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ResetPage(),
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: const Text('Forgot password?',
                     style: TextStyle(
