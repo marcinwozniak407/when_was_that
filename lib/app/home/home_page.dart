@@ -24,7 +24,20 @@ class _HomePageState extends State<HomePage> {
         title: const Text('When was that?'),
       ),
       body: Center(
-        child: Text('Jesteś zalogowany jako ${widget.user.email}'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Jesteś zalogowany jako ${widget.user.email}'),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                child: const Text('Sign out'))
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
