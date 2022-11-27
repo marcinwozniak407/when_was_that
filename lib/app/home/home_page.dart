@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Jesteś zalogowany jako ${widget.user.email}'),
+            Text('You are logged in as ${widget.user.email}'),
             const SizedBox(
               height: 20,
             ),
