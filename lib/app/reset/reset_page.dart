@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ResetPage extends StatefulWidget {
@@ -11,6 +12,22 @@ class ResetPage extends StatefulWidget {
 
 class _ResetPageState extends State<ResetPage> {
   var errorMessage = '';
+  final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+    } on FirebaseAuthException catch (errorMessage) {
+      print(errorMessage.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +43,13 @@ class _ResetPageState extends State<ResetPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
+              const Text(
+                  'Enter your e-mail and you will receive the password reset link',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: "e-mail",
                   enabledBorder: OutlineInputBorder(
@@ -42,7 +65,7 @@ class _ResetPageState extends State<ResetPage> {
                   height: 45,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => passwordReset(),
                     child: const Text('Send request'),
                   ))
             ],
