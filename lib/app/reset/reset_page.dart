@@ -67,7 +67,8 @@ class _ResetPageState extends State<ResetPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () => passwordReset(),
-                    child: const Text('Send request'),
+                    child: const Text('Send request',
+                        style: TextStyle(fontSize: 20)),
                   ))
             ],
           ),
