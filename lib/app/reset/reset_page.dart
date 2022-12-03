@@ -41,7 +41,8 @@ class _ResetPageState extends State<ResetPage> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                   'Enter your e-mail and you will receive the password reset link',
