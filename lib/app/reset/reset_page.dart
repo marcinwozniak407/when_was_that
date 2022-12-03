@@ -25,7 +25,15 @@ class _ResetPageState extends State<ResetPage> {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.trim());
     } on FirebaseAuthException catch (errorMessage) {
-      print(errorMessage.toString());
+      print(errorMessage);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(errorMessage.toString()),
+          );
+        },
+      );
     }
   }
 
