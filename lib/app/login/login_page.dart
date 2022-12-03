@@ -123,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }
                   },
-                  child:
-                      Text(isCreatingAccount == true ? 'Sign up' : 'Sign in'),
+                  child: Text(isCreatingAccount == true ? 'Sign up' : 'Sign in',
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
               const SizedBox(height: 20),
