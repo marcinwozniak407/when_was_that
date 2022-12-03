@@ -24,6 +24,14 @@ class _ResetPageState extends State<ResetPage> {
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.trim());
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            content: Text('Password reset link sent! Check your email!'),
+          );
+        },
+      );
     } on FirebaseAuthException catch (errorMessage) {
       print(errorMessage);
       showDialog(
