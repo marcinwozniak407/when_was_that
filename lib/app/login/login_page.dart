@@ -75,23 +75,28 @@ class _LoginPageState extends State<LoginPage> {
                 maxLength: 20,
               ),
               Text(errorMessage),
-              TextButton(
-                onPressed: () {
-                  setState(
-                    () {
-                      isCreatingAccount == true;
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ResetPage(),
-                        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          isCreatingAccount == true;
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ResetPage(),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                child: const Text('Forgot password?',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.grey)),
+                    child: const Text('Forgot password?',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.grey)),
+                  ),
+                ],
               ),
               Container(
                 height: 45,
@@ -129,26 +134,38 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               if (isCreatingAccount == false) ...[
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isCreatingAccount = true;
-                    });
-                  },
-                  child: const Text('Create an account',
-                      style: TextStyle(decoration: TextDecoration.underline)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          isCreatingAccount = true;
+                        });
+                      },
+                      child: const Text(
+                        'Create an account',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
                 ),
               ],
               if (isCreatingAccount == true) ...[
                 Column(
                   children: [
-                    TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isCreatingAccount = false;
-                          });
-                        },
-                        child: const Text('Do you have an account?')),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                isCreatingAccount = false;
+                              });
+                            },
+                            child: const Text('Do you have an account?')),
+                      ],
+                    ),
                   ],
                 )
               ]
