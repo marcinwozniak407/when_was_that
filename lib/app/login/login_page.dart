@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           isCreatingAccount == true;
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ResetPage(),
+                              builder: (context) => const ResetPage(),
                             ),
                           );
                         },
