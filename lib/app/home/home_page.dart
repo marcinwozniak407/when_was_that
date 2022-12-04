@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:when_was_that/app/my%20account/my_account_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -23,22 +24,17 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: const Text('When was that?'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('You are logged in as ${widget.user.email}'),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                child: const Text('Sign out'))
-          ],
-        ),
-      ),
+      body: Builder(builder: (context) {
+        if (currentIndex == 0) {
+          return const Center(
+              child: Text('List', style: TextStyle(fontSize: 50)));
+        }
+        if (currentIndex == 1) {
+          return const Center(
+              child: Text('Add', style: TextStyle(fontSize: 50)));
+        }
+        return MyAccountPage(email: widget.user.email);
+      }),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
