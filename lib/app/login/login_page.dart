@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:when_was_that/app/reset/reset_page.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -52,24 +53,50 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextField(
                 controller: widget.emailController,
-                decoration: const InputDecoration(hintText: "e-mail"),
+                decoration: InputDecoration(
+                  hintText: "e-mail",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                maxLength: 40,
               ),
               TextField(
                 controller: widget.passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(hintText: "password"),
+                decoration: InputDecoration(
+                  hintText: "password",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                maxLength: 20,
               ),
               Text(errorMessage),
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    isCreatingAccount == true;
-                  });
-                },
-                child: const Text('Forgot password?',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.grey)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          isCreatingAccount == true;
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ResetPage(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const Text('Forgot password?',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.grey)),
+                  ),
+                ],
               ),
               Container(
                 height: 45,
@@ -101,32 +128,44 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }
                   },
-                  child:
-                      Text(isCreatingAccount == true ? 'Sign up' : 'Sign in'),
+                  child: Text(isCreatingAccount == true ? 'Sign up' : 'Sign in',
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
               const SizedBox(height: 20),
               if (isCreatingAccount == false) ...[
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isCreatingAccount = true;
-                    });
-                  },
-                  child: const Text('Create an account',
-                      style: TextStyle(decoration: TextDecoration.underline)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          isCreatingAccount = true;
+                        });
+                      },
+                      child: const Text(
+                        'Create an account',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
                 ),
               ],
               if (isCreatingAccount == true) ...[
                 Column(
                   children: [
-                    TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isCreatingAccount = false;
-                          });
-                        },
-                        child: const Text('Do you have an account?')),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                isCreatingAccount = false;
+                              });
+                            },
+                            child: const Text('Do you have an account?')),
+                      ],
+                    ),
                   ],
                 )
               ]
