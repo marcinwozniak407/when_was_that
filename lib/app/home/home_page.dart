@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white70,
+        showUnselectedLabels: false,
         currentIndex: currentIndex,
         onTap: (NewIndex) {
           setState(() {
