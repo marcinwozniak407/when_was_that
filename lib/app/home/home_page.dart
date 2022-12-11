@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:when_was_that/app/my%20account/my_account_page.dart';
+import 'package:when_was_that/app/my%20account/my_account_page_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -30,8 +31,7 @@ class _HomePageState extends State<HomePage> {
               child: Text('List', style: TextStyle(fontSize: 50)));
         }
         if (currentIndex == 1) {
-          return const Center(
-              child: Text('Add', style: TextStyle(fontSize: 50)));
+          return const AddPageContent();
         }
         return MyAccountPage(email: widget.user.email);
       }),
@@ -62,5 +62,21 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+}
+
+class AddPageContent extends StatelessWidget {
+  const AddPageContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<Object>(
+        stream: FirebaseFirestore.instance.collection('events').snapshots(),
+        builder: (context, snapshot) {
+          return const Center(
+              child: Text('Add', style: TextStyle(fontSize: 50)));
+        });
   }
 }
