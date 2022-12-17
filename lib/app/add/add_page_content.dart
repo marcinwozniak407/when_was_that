@@ -27,6 +27,9 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
           TextField(
             decoration: InputDecoration(
               hintText: "name of event",
