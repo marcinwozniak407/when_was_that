@@ -27,6 +27,15 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "name of event",
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
         ],
       ),
     );
