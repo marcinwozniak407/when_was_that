@@ -72,7 +72,7 @@ class AddPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
+    return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -85,6 +85,9 @@ class AddPageContent extends StatelessWidget {
               child: Text('Loading...'),
             );
           }
+
+          final documents = snapshot.data!.docs;
+
           return const Center(
               child: Text('Add', style: TextStyle(fontSize: 50)));
         });
