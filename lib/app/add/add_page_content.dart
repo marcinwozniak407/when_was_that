@@ -9,22 +9,21 @@ class AddPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('events').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text("Something went wrong..."),
-            );
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: Text('Loading...'),
-            );
-          }
-
-          return const Center(
-              child: Text('Add', style: TextStyle(fontSize: 50)));
-        });
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              hintText: "category",
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
