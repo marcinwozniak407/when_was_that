@@ -27,8 +27,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const Center(
-              child: Text('List', style: TextStyle(fontSize: 50)));
+          return ListPageContent();
         }
         if (currentIndex == 1) {
           return const AddPageContent();
@@ -65,6 +64,17 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class ListPageContent extends StatelessWidget {
+  const ListPageContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('List', style: TextStyle(fontSize: 50)));
+  }
+}
+
 class AddPageContent extends StatelessWidget {
   const AddPageContent({
     Key? key,
@@ -85,8 +95,6 @@ class AddPageContent extends StatelessWidget {
               child: Text('Loading...'),
             );
           }
-
-          final documents = snapshot.data!.docs;
 
           return const Center(
               child: Text('Add', style: TextStyle(fontSize: 50)));
