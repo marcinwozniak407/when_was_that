@@ -75,6 +75,16 @@ class AddPageContent extends StatelessWidget {
     return StreamBuilder<Object>(
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
         builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text("Something went wrong..."),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: Text('Loading...'),
+            );
+          }
           return const Center(
               child: Text('Add', style: TextStyle(fontSize: 50)));
         });
