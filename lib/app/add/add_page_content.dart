@@ -12,6 +12,8 @@ class AddPageContent extends StatefulWidget {
 }
 
 class _AddPageContentState extends State<AddPageContent> {
+  var eventName = '';
+
   @override
   Widget build(BuildContext context) {
     return Center(
