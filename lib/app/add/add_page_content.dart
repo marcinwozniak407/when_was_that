@@ -39,6 +39,18 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "add a comment to this event if you want",
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
         ],
       ),
     );
