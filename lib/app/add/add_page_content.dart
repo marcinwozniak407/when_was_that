@@ -20,7 +20,7 @@ class _AddPageContentState extends State<AddPageContent> {
         children: [
           TextField(
             decoration: InputDecoration(
-              hintText: "category",
+              hintText: "category of event",
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.blue),
                 borderRadius: BorderRadius.circular(12),
