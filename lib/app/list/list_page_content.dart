@@ -26,7 +26,7 @@ class ListPageContent extends StatelessWidget {
           return ListView(
             children: [
               for (final document in documents) ...[
-                Text(document['category']),
+                Text(document['category'].toUpperCase()),
                 Text(document['name']),
                 Text(document['comment']),
                 Text(document['rating'].toString()),
