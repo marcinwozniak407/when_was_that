@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:when_was_that/app/add/add_page_content.dart';
+import 'package:when_was_that/app/list/list_page_content.dart';
 import 'package:when_was_that/app/my%20account/my_account_page_content.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,16 +63,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-}
-
-class ListPageContent extends StatelessWidget {
-  const ListPageContent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('List', style: TextStyle(fontSize: 50)));
   }
 }
