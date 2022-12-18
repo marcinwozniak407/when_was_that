@@ -82,8 +82,8 @@ class _AddPageContentState extends State<AddPageContent> {
                 });
               },
               min: 1.0,
-              max: 6.0,
-              divisions: 10,
+              max: 10.0,
+              divisions: 9,
               label: rating.toString(),
             ),
             const SizedBox(height: 20),
