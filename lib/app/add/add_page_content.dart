@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:when_was_that/app/list/list_page_content.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
@@ -94,14 +95,16 @@ class _AddPageContentState extends State<AddPageContent> {
               height: 45,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  FirebaseFirestore.instance.collection('events').add({
-                    'category': categoryOfEvent,
-                    'name': eventName,
-                    'comment': comment,
-                    'rating': rating,
-                  });
-                },
+                onPressed: categoryOfEvent.isEmpty || eventName.isEmpty
+                    ? null
+                    : () {
+                        FirebaseFirestore.instance.collection('events').add({
+                          'category': categoryOfEvent,
+                          'name': eventName,
+                          'comment': comment,
+                          'rating': rating,
+                        });
+                      },
                 child: const Text(
                   'Add event',
                   style: TextStyle(fontSize: 20),
