@@ -14,6 +14,7 @@ class AddPageContent extends StatefulWidget {
 class _AddPageContentState extends State<AddPageContent> {
   var categoryOfEvent = '';
   var eventName = '';
+  var comment = '';
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,11 @@ class _AddPageContentState extends State<AddPageContent> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            onChanged: (newValue) {
+              setState(() {
+                categoryOfEvent = newValue;
+              });
+            },
             decoration: InputDecoration(
               hintText: "category of event",
               enabledBorder: OutlineInputBorder(
@@ -34,6 +40,11 @@ class _AddPageContentState extends State<AddPageContent> {
             height: 10,
           ),
           TextField(
+            onChanged: (newValue) {
+              setState(() {
+                eventName = newValue;
+              });
+            },
             decoration: InputDecoration(
               hintText: "name of event",
               enabledBorder: OutlineInputBorder(
@@ -46,6 +57,11 @@ class _AddPageContentState extends State<AddPageContent> {
             height: 10,
           ),
           TextField(
+            onChanged: (newValue) {
+              setState(() {
+                comment = newValue;
+              });
+            },
             decoration: InputDecoration(
               hintText: "add a comment to this event if you want",
               enabledBorder: OutlineInputBorder(
