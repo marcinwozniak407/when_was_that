@@ -15,7 +15,7 @@ class _AddPageContentState extends State<AddPageContent> {
   var categoryOfEvent = '';
   var eventName = '';
   var comment = '';
-  var rating = '';
+  var rating = 3.0;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +71,18 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          Slider(
+            value: rating,
+            onChanged: (newValue) {
+              setState(() {
+                rating = newValue;
+              });
+            },
+            min: 1.0,
+            max: 6.0,
+            divisions: 10,
+            label: rating.toString(),
+          ),
           const SizedBox(height: 20),
           Container(
             width: double.infinity,
@@ -79,7 +91,8 @@ class _AddPageContentState extends State<AddPageContent> {
                 FirebaseFirestore.instance.collection('events').add({
                   'category': categoryOfEvent,
                   'name': eventName,
-                  'comment': comment
+                  'comment': comment,
+                  'rating': rating,
                 });
               },
               child: const Text('Add event'),
