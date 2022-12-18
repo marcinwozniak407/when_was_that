@@ -70,6 +70,7 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
           ElevatedButton(
               onPressed: () {
                 FirebaseFirestore.instance.collection('events').add({
