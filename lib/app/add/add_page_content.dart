@@ -38,6 +38,7 @@ class _AddPageContentState extends State<AddPageContent> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+              maxLength: 20,
             ),
             const SizedBox(
               height: 10,
@@ -55,6 +56,7 @@ class _AddPageContentState extends State<AddPageContent> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+              maxLength: 20,
             ),
             const SizedBox(
               height: 10,
@@ -72,6 +74,7 @@ class _AddPageContentState extends State<AddPageContent> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+              maxLength: 50,
             ),
             const SizedBox(height: 10),
             Slider(
