@@ -21,6 +21,8 @@ class _AddPageContentState extends State<AddPageContent> {
   var comment = '';
   var rating = 3.0;
 
+  DateTime _dateTime = DateTime.now();
+
   void _showDatePicker() {
     showDatePicker(
         context: context,
