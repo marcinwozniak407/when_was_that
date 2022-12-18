@@ -70,6 +70,15 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                FirebaseFirestore.instance.collection('events').add({
+                  'category': categoryOfEvent,
+                  'name': eventName,
+                  'comment': comment
+                });
+              },
+              child: const Text('Add event'))
         ],
       ),
     );
