@@ -21,101 +21,121 @@ class _AddPageContentState extends State<AddPageContent> {
   var comment = '';
   var rating = 3.0;
 
+  void _showDatePicker() {
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2100));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              onChanged: (newValue) {
-                setState(() {
-                  categoryOfEvent = newValue;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: "category of event",
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(12),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                onChanged: (newValue) {
+                  setState(() {
+                    categoryOfEvent = newValue;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: "category of event",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
+                maxLength: 20,
               ),
-              maxLength: 20,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              onChanged: (newValue) {
-                setState(() {
-                  eventName = newValue;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: "name of event",
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(12),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                onChanged: (newValue) {
+                  setState(() {
+                    eventName = newValue;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: "name of event",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
+                maxLength: 20,
               ),
-              maxLength: 20,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              onChanged: (newValue) {
-                setState(() {
-                  comment = newValue;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: "add a comment to this event if you want",
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              const SizedBox(
+                height: 10,
               ),
-              maxLength: 100,
-            ),
-            const SizedBox(height: 10),
-            Slider(
-              value: rating,
-              onChanged: (newValue) {
-                setState(() {
-                  rating = newValue;
-                });
-              },
-              min: 1.0,
-              max: 10.0,
-              divisions: 9,
-              label: rating.toString(),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 45,
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: categoryOfEvent.isEmpty || eventName.isEmpty
-                    ? null
-                    : () {
-                        FirebaseFirestore.instance.collection('events').add({
-                          'category': categoryOfEvent,
-                          'name': eventName,
-                          'comment': comment,
-                          'rating': rating,
-                        });
-                        widget.onSave();
-                      },
+              ElevatedButton(
+                onPressed: _showDatePicker,
                 child: const Text(
-                  'Add event',
-                  style: TextStyle(fontSize: 20),
+                  'Choose date of event',
+                  style: TextStyle(fontSize: 15),
                 ),
               ),
-            )
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                onChanged: (newValue) {
+                  setState(() {
+                    comment = newValue;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: "add a comment to this event if you want",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                maxLength: 100,
+              ),
+              const SizedBox(height: 10),
+              Slider(
+                value: rating,
+                onChanged: (newValue) {
+                  setState(() {
+                    rating = newValue;
+                  });
+                },
+                min: 1.0,
+                max: 10.0,
+                divisions: 9,
+                label: rating.toString(),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: categoryOfEvent.isEmpty || eventName.isEmpty
+                      ? null
+                      : () {
+                          FirebaseFirestore.instance.collection('events').add({
+                            'category': categoryOfEvent,
+                            'name': eventName,
+                            'comment': comment,
+                            'rating': rating,
+                          });
+                          widget.onSave();
+                        },
+                  child: const Text(
+                    'Add event',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
