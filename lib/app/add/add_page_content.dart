@@ -6,7 +6,10 @@ import 'package:when_was_that/app/list/list_page_content.dart';
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
+
+  final Function onSave;
 
   @override
   State<AddPageContent> createState() => _AddPageContentState();
@@ -104,6 +107,7 @@ class _AddPageContentState extends State<AddPageContent> {
                           'comment': comment,
                           'rating': rating,
                         });
+                        widget.onSave();
                       },
                 child: const Text(
                   'Add event',

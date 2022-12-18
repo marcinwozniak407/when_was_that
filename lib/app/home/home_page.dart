@@ -32,7 +32,11 @@ class _HomePageState extends State<HomePage> {
           return const ListPageContent();
         }
         if (currentIndex == 1) {
-          return const AddPageContent();
+          return AddPageContent(onSave: () {
+            setState(() {
+              currentIndex = 0;
+            });
+          });
         }
         return MyAccountPage(email: widget.user.email);
       }),
