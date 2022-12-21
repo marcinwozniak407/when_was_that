@@ -26,7 +26,7 @@ class _AddPageContentState extends State<AddPageContent> {
   void _showDatePicker() {
     showDatePicker(
             context: context,
-            initialDate: DateTime.now(),
+            initialDate: _dateTime == null ? DateTime.now() : _dateTime,
             firstDate: DateTime(1990),
             lastDate: DateTime(2100))
         .then((value) {
