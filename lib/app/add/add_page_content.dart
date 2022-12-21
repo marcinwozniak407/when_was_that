@@ -76,6 +76,10 @@ class _AddPageContentState extends State<AddPageContent> {
               const SizedBox(
                 height: 10,
               ),
+              Text(_dateTime.toString()),
+              const SizedBox(
+                height: 10,
+              ),
               ElevatedButton(
                 onPressed: _showDatePicker,
                 child: const Text(
