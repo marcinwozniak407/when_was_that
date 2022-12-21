@@ -81,7 +81,9 @@ class _AddPageContentState extends State<AddPageContent> {
               const SizedBox(
                 height: 10,
               ),
-              Text(_dateTime.toString()),
+              Text(
+                _dateTime.toString().substring(0, 10),
+              ),
               const SizedBox(
                 height: 10,
               ),
