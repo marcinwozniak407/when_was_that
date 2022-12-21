@@ -25,10 +25,15 @@ class _AddPageContentState extends State<AddPageContent> {
 
   void _showDatePicker() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1990),
-        lastDate: DateTime(2100));
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1990),
+            lastDate: DateTime(2100))
+        .then((value) {
+      setState(() {
+        _dateTime = value!;
+      });
+    });
   }
 
   @override
