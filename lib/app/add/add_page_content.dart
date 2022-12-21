@@ -97,6 +97,19 @@ class _AddPageContentState extends State<AddPageContent> {
               const SizedBox(
                 height: 10,
               ),
+              Slider(
+                value: rating,
+                onChanged: (newValue) {
+                  setState(() {
+                    rating = newValue;
+                  });
+                },
+                min: 1.0,
+                max: 10.0,
+                divisions: 9,
+                label: rating.toString(),
+              ),
+              const SizedBox(height: 10),
               TextField(
                 onChanged: (newValue) {
                   setState(() {
@@ -111,19 +124,6 @@ class _AddPageContentState extends State<AddPageContent> {
                   ),
                 ),
                 maxLength: 100,
-              ),
-              const SizedBox(height: 10),
-              Slider(
-                value: rating,
-                onChanged: (newValue) {
-                  setState(() {
-                    rating = newValue;
-                  });
-                },
-                min: 1.0,
-                max: 10.0,
-                divisions: 9,
-                label: rating.toString(),
               ),
               const SizedBox(height: 20),
               Container(
