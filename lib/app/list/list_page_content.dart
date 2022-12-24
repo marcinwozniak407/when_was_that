@@ -31,6 +31,7 @@ class ListPageContent extends StatelessWidget {
               for (final document in documents) ...[
                 Text(document['category'].toUpperCase()),
                 Text(document['name']),
+                Text(document['date'].toString()),
                 Text(document['comment']),
                 Text(document['rating'].toString()),
               ],
