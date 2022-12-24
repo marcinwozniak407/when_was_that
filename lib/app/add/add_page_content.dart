@@ -97,6 +97,7 @@ class _AddPageContentState extends State<AddPageContent> {
               const SizedBox(
                 height: 10,
               ),
+              const Text('Rate this event:'),
               Slider(
                 value: rating,
                 onChanged: (newValue) {
