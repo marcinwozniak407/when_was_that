@@ -139,6 +139,7 @@ class _AddPageContentState extends State<AddPageContent> {
                             'name': eventName,
                             'comment': comment,
                             'rating': rating,
+                            'date': _dateTime.toString().substring(0, 10),
                           });
                           widget.onSave();
                         },
