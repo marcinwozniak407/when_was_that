@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:when_was_that/app/my%20account/my_account_page.dart';
+import 'package:when_was_that/app/add/add_page_content.dart';
+import 'package:when_was_that/app/list/list_page_content.dart';
+import 'package:when_was_that/app/my%20account/my_account_page_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -26,12 +29,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const Center(
-              child: Text('List', style: TextStyle(fontSize: 50)));
+          return const ListPageContent();
         }
         if (currentIndex == 1) {
-          return const Center(
-              child: Text('Add', style: TextStyle(fontSize: 50)));
+          return AddPageContent(onSave: () {
+            setState(() {
+              currentIndex = 0;
+            });
+          });
         }
         return MyAccountPage(email: widget.user.email);
       }),
