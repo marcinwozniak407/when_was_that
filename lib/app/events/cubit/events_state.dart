@@ -1,6 +1,8 @@
 part of 'events_cubit.dart';
 
 @immutable
-abstract class EventsState {}
+class EventsState {
+  final List<QueryDocumentSnapshot<Object?>> documents;
 
-class EventsInitial extends EventsState {}
+  EventsState({required this.documents});
+}
