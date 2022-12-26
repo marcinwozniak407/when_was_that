@@ -5,5 +5,10 @@ import 'package:meta/meta.dart';
 part 'events_state.dart';
 
 class EventsCubit extends Cubit<EventsState> {
-  EventsCubit() : super(EventsState(documents: const []));
+  EventsCubit()
+      : super(const EventsState(
+          documents: [],
+          errorMessage: '',
+          isLoading: false,
+        ));
 }
