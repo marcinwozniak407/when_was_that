@@ -17,7 +17,7 @@ class EventsPageContent extends StatelessWidget {
         builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
             return Center(
-              child: Text("Something went wrong... ${state.errorMessage}"),
+              child: Text("Something went wrong: ${state.errorMessage}"),
             );
           }
           if (state.isLoading) {
