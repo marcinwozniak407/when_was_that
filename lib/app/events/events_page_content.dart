@@ -12,62 +12,111 @@ class EventsPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EventsCubit(),
+      create: (context) => EventsCubit()..start(),
       child: BlocBuilder<EventsCubit, EventsState>(
         builder: (context, state) {
-          return StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('events')
-                  .orderBy('rating', descending: true)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Something went wrong..."),
-                  );
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+          if (state.errorMessage.isNotEmpty) {
+            return Center(
+              child: Text("Something went wrong... ${state.errorMessage}"),
+            );
+          }
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
 
-                final documents = snapshot.data!.docs;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 30,
-                  ),
-                  child: Container(
-                    height: 140,
-                    decoration: const BoxDecoration(color: Colors.green),
-                    margin: const EdgeInsets.all(10),
-                    child: ListView(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
-                      children: [
-                        for (final document in documents) ...[
-                          Text(document['category'].toUpperCase(),
-                              style: GoogleFonts.roboto(
-                                  fontSize: 20, color: Colors.white)),
-                          Text(document['name'],
-                              style: GoogleFonts.robotoCondensed(
-                                  fontSize: 18, color: Colors.white)),
-                          Text(document['date'].toString(),
-                              style: GoogleFonts.robotoCondensed(
-                                  fontSize: 15, color: Colors.white)),
-                          Text(document['comment'],
-                              style: GoogleFonts.robotoCondensed(
-                                  fontSize: 15, color: Colors.white)),
-                          Text(document['rating'].toString(),
-                              style: GoogleFonts.robotoCondensed(
-                                  fontSize: 15, color: Colors.white)),
-                        ],
-                      ],
-                    ),
-                  ),
+          final documents = state.documents;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 30,
+            ),
+            child: Container(
+              height: 140,
+              decoration: const BoxDecoration(color: Colors.green),
+              margin: const EdgeInsets.all(10),
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                children: [
+                  for (final document in documents) ...[
+                    Text(document['category'].toUpperCase(),
+                        style: GoogleFonts.roboto(
+                            fontSize: 20, color: Colors.white)),
+                    Text(document['name'],
+                        style: GoogleFonts.robotoCondensed(
+                            fontSize: 18, color: Colors.white)),
+                    Text(document['date'].toString(),
+                        style: GoogleFonts.robotoCondensed(
+                            fontSize: 15, color: Colors.white)),
+                    Text(document['comment'],
+                        style: GoogleFonts.robotoCondensed(
+                            fontSize: 15, color: Colors.white)),
+                    Text(document['rating'].toString(),
+                        style: GoogleFonts.robotoCondensed(
+                            fontSize: 15, color: Colors.white)),
+                  ],
+                ],
+              ),
+            ),
+          );
+
+          return StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('events')
+                .orderBy('rating', descending: true)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(
+                  child: Text("Something went wrong..."),
                 );
-              });
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final documents = snapshot.data!.docs;
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 30,
+                ),
+                child: Container(
+                  height: 140,
+                  decoration: const BoxDecoration(color: Colors.green),
+                  margin: const EdgeInsets.all(10),
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 20),
+                    children: [
+                      for (final document in documents) ...[
+                        Text(document['category'].toUpperCase(),
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, color: Colors.white)),
+                        Text(document['name'],
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 18, color: Colors.white)),
+                        Text(document['date'].toString(),
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.white)),
+                        Text(document['comment'],
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.white)),
+                        Text(document['rating'].toString(),
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.white)),
+                      ],
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         },
       ),
     );
