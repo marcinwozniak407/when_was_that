@@ -28,7 +28,7 @@ class EventsPageContent extends StatelessWidget {
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
-                    child: Text('Loading...'),
+                    child: CircularProgressIndicator(),
                   );
                 }
 
