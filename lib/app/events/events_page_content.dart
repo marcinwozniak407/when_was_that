@@ -27,39 +27,43 @@ class EventsPageContent extends StatelessWidget {
 
           final documents = state.documents;
 
-          return Padding(
+          return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 10,
               horizontal: 30,
             ),
-            child: Container(
-              height: 140,
-              decoration: const BoxDecoration(color: Colors.green),
-              margin: const EdgeInsets.all(10),
-              child: ListView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                children: [
-                  for (final document in documents) ...[
-                    Text(document['category'].toUpperCase(),
-                        style: GoogleFonts.roboto(
-                            fontSize: 20, color: Colors.white)),
-                    Text(document['name'],
-                        style: GoogleFonts.robotoCondensed(
-                            fontSize: 18, color: Colors.white)),
-                    Text(document['date'].toString(),
-                        style: GoogleFonts.robotoCondensed(
-                            fontSize: 15, color: Colors.white)),
-                    Text(document['comment'],
-                        style: GoogleFonts.robotoCondensed(
-                            fontSize: 15, color: Colors.white)),
-                    Text(document['rating'].toString(),
-                        style: GoogleFonts.robotoCondensed(
-                            fontSize: 15, color: Colors.white)),
-                  ],
-                ],
-              ),
-            ),
+            children: [
+              for (final document in documents)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(document['category'].toUpperCase(),
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, color: Colors.black)),
+                        Text(document['name'],
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 18, color: Colors.black)),
+                        Text(document['date'].toString(),
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.black)),
+                        Text(document['comment'],
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.black)),
+                        Text(document['rating'].toString(),
+                            style: GoogleFonts.robotoCondensed(
+                                fontSize: 15, color: Colors.black)),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
           );
         },
       ),
