@@ -46,16 +46,16 @@ class EventsPageContent extends StatelessWidget {
                       children: [
                         Text(document['category'].toUpperCase(),
                             style: GoogleFonts.roboto(
-                                fontSize: 20, color: Colors.black)),
+                                fontSize: 25, color: Colors.black)),
                         Text(document['name'],
                             style: GoogleFonts.robotoCondensed(
-                                fontSize: 18, color: Colors.black)),
+                                fontSize: 20, color: Colors.black)),
                         Text(document['date'].toString(),
                             style: GoogleFonts.robotoCondensed(
                                 fontSize: 15, color: Colors.black)),
                         Text(document['comment'],
-                            style: GoogleFonts.robotoCondensed(
-                                fontSize: 15, color: Colors.black)),
+                            style: GoogleFonts.greatVibes(
+                                fontSize: 20, color: Colors.black)),
                         Text(document['rating'].toString(),
                             style: GoogleFonts.robotoCondensed(
                                 fontSize: 15, color: Colors.black)),
