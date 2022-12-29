@@ -46,7 +46,7 @@ class EventsPageContent extends StatelessWidget {
                       children: [
                         Text(document['category'].toUpperCase(),
                             style: GoogleFonts.roboto(
-                                fontSize: 20, color: Colors.black)),
+                                fontSize: 15, color: Colors.black)),
                         Container(
                           decoration:
                               const BoxDecoration(color: Colors.white70),
