@@ -46,7 +46,7 @@ class EventsPageContent extends StatelessWidget {
                       children: [
                         Text(document['category'].toUpperCase(),
                             style: GoogleFonts.roboto(
-                                fontSize: 25, color: Colors.black)),
+                                fontSize: 20, color: Colors.black)),
                         Container(
                           decoration:
                               const BoxDecoration(color: Colors.white70),
@@ -54,7 +54,7 @@ class EventsPageContent extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           child: Text(document['name'],
                               style: GoogleFonts.robotoCondensed(
-                                  fontSize: 20, color: Colors.black)),
+                                  fontSize: 30, color: Colors.black)),
                         ),
                         Text(document['date'].toString(),
                             style: GoogleFonts.robotoCondensed(
@@ -66,7 +66,7 @@ class EventsPageContent extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           child: Text(document['comment'],
                               style: GoogleFonts.greatVibes(
-                                  fontSize: 20, color: Colors.black)),
+                                  fontSize: 25, color: Colors.black)),
                         ),
                         Text(document['rating'].toString(),
                             style: GoogleFonts.robotoCondensed(
