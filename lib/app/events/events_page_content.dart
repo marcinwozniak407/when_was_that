@@ -39,7 +39,7 @@ class EventsPageContent extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: const BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.black12,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
