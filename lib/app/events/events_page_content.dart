@@ -52,12 +52,24 @@ class EventsPageContent extends StatelessWidget {
                               const BoxDecoration(color: Colors.white70),
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           padding: const EdgeInsets.all(5),
-                          child: Text(
-                            document['name'],
-                            style: GoogleFonts.robotoCondensed(
-                                fontSize: 25,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  document['name'],
+                                  style: GoogleFonts.robotoCondensed(
+                                      fontSize: 25,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(document['rating'].toString(),
+                                    style: GoogleFonts.robotoSlab(
+                                        fontSize: 25, color: Colors.black)),
+                              ),
+                            ],
                           ),
                         ),
                         Text(document['date'].toString(),
@@ -74,9 +86,6 @@ class EventsPageContent extends StatelessWidget {
                                 color: Colors.black,
                               )),
                         ),
-                        Text(document['rating'].toString(),
-                            style: GoogleFonts.robotoCondensed(
-                                fontSize: 15, color: Colors.black)),
                       ],
                     ),
                   ),
