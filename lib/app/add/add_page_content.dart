@@ -108,7 +108,7 @@ class _AddPageContentState extends State<AddPageContent> {
                 min: 1.0,
                 max: 10.0,
                 divisions: 9,
-                label: rating.toString(),
+                label: rating.toStringAsFixed(0),
               ),
               const SizedBox(height: 10),
               TextField(

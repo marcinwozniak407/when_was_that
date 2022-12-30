@@ -65,7 +65,8 @@ class EventsPageContent extends StatelessWidget {
                               ),
                               Align(
                                 alignment: Alignment.centerRight,
-                                child: Text(document['rating'].toString(),
+                                child: Text(
+                                    document['rating'].toStringAsFixed(0),
                                     style: GoogleFonts.robotoSlab(
                                         fontSize: 25, color: Colors.black)),
                               ),
