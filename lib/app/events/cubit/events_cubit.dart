@@ -42,7 +42,7 @@ class EventsCubit extends Cubit<EventsState> {
       ..onError((error) {
         emit(
           EventsState(
-            documents: [],
+            documents: const [],
             isLoading: false,
             errorMessage: error.toString(),
           ),
