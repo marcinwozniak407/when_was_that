@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:when_was_that/app/list/list_page_content.dart';
+import 'package:when_was_that/app/events/events_page_content.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
@@ -20,6 +20,7 @@ class _AddPageContentState extends State<AddPageContent> {
   var eventName = '';
   var comment = '';
   var rating = 3.0;
+  final items = ['film', 'performance', 'exhibition', 'concert', 'show'];
 
   DateTime _dateTime = DateTime.now();
 
@@ -108,7 +109,7 @@ class _AddPageContentState extends State<AddPageContent> {
                 min: 1.0,
                 max: 10.0,
                 divisions: 9,
-                label: rating.toString(),
+                label: rating.toStringAsFixed(0),
               ),
               const SizedBox(height: 10),
               TextField(
