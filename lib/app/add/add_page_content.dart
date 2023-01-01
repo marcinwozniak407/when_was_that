@@ -20,6 +20,7 @@ class _AddPageContentState extends State<AddPageContent> {
   var eventName = '';
   var comment = '';
   var rating = 3.0;
+  final items = ['film', 'performance', 'exhibition', 'concert', 'show'];
 
   DateTime _dateTime = DateTime.now();
 
