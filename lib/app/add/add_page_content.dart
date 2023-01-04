@@ -62,11 +62,13 @@ class _AddPageContentState extends State<AddPageContent> {
                   border: Border.all(color: Colors.blue),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: DropdownButton<String>(
-                  value: value,
-                  isExpanded: true,
-                  items: items.map(buildMenuItem).toList(),
-                  onChanged: (value) => setState(() => this.value = value),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: value,
+                    isExpanded: true,
+                    items: items.map(buildMenuItem).toList(),
+                    onChanged: (value) => setState(() => this.value = value),
+                  ),
                 ),
               ),
               const SizedBox(
