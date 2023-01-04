@@ -21,6 +21,7 @@ class _AddPageContentState extends State<AddPageContent> {
   var comment = '';
   var rating = 3.0;
   final items = ['film', 'performance', 'exhibition', 'concert', 'show'];
+  String? value;
 
   DateTime _dateTime = DateTime.now();
 
@@ -37,6 +38,14 @@ class _AddPageContentState extends State<AddPageContent> {
     });
   }
 
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: const TextStyle(fontSize: 20),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -46,20 +55,19 @@ class _AddPageContentState extends State<AddPageContent> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                onChanged: (newValue) {
-                  setState(() {
-                    categoryOfEvent = newValue;
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: "category of event",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                maxLength: 20,
+                child: DropdownButton<String>(
+                  value: value,
+                  isExpanded: true,
+                  items: items.map(buildMenuItem).toList(),
+                  onChanged: (value) => setState(() => this.value = value),
+                ),
               ),
               const SizedBox(
                 height: 10,
