@@ -81,7 +81,7 @@ class EventsPageContent extends StatelessWidget {
                               const BoxDecoration(color: Colors.white70),
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           padding: const EdgeInsets.all(5),
-                          child: Text(document['comment'],
+                          child: Text(document['comment'].toString(),
                               style: GoogleFonts.greatVibes(
                                 fontSize: 25,
                                 color: Colors.black,
