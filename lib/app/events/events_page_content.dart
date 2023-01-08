@@ -76,17 +76,18 @@ class EventsPageContent extends StatelessWidget {
                         Text(document['date'].toString(),
                             style: GoogleFonts.robotoCondensed(
                                 fontSize: 15, color: Colors.black)),
-                        Container(
-                          decoration:
-                              const BoxDecoration(color: Colors.white70),
-                          margin: const EdgeInsets.symmetric(vertical: 5),
-                          padding: const EdgeInsets.all(5),
-                          child: Text(document['comment'].toString(),
-                              style: GoogleFonts.greatVibes(
-                                fontSize: 25,
-                                color: Colors.black,
-                              )),
-                        ),
+                        if (document['comment'].isNotEmpty)
+                          Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.white70),
+                            margin: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.all(5),
+                            child: Text(document['comment'].toString(),
+                                style: GoogleFonts.greatVibes(
+                                  fontSize: 25,
+                                  color: Colors.black,
+                                )),
+                          ),
                       ],
                     ),
                   ),
