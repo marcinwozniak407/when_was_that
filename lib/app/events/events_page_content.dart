@@ -45,7 +45,12 @@ class EventsPageContent extends StatelessWidget {
                   },
                   background: const DecoratedBox(
                     decoration: BoxDecoration(color: Colors.red),
-                    child: Icon(Icons.delete),
+                    child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 32.0),
+                          child: Icon(Icons.delete),
+                        )),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
