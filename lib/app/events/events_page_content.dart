@@ -44,7 +44,9 @@ class EventsPageContent extends StatelessWidget {
                         .delete();
                   },
                   background: const DecoratedBox(
-                      decoration: BoxDecoration(color: Colors.red)),
+                    decoration: BoxDecoration(color: Colors.red),
+                    child: Icon(Icons.delete),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
