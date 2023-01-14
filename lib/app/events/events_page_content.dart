@@ -52,6 +52,7 @@ class EventsPageContent extends StatelessWidget {
                           child: Icon(Icons.delete),
                         )),
                   ),
+                  direction: DismissDirection.endToStart,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
