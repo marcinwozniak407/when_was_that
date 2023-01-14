@@ -16,11 +16,17 @@ class AddPageContent extends StatefulWidget {
 }
 
 class _AddPageContentState extends State<AddPageContent> {
-  var categoryOfEvent = '';
   var eventName = '';
   var comment = '';
   var rating = 3.0;
-  final items = ['film', 'performance', 'exhibition', 'concert', 'show'];
+  final categoryOfEvent = [
+    'film',
+    'performance',
+    'exhibition',
+    'concert',
+    'show'
+  ];
+  String? value;
 
   DateTime _dateTime = DateTime.now();
 
@@ -37,6 +43,14 @@ class _AddPageContentState extends State<AddPageContent> {
     });
   }
 
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: const TextStyle(fontSize: 20),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -46,23 +60,25 @@ class _AddPageContentState extends State<AddPageContent> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                onChanged: (newValue) {
-                  setState(() {
-                    categoryOfEvent = newValue;
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: "category of event",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(12),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: value,
+                    hint: const Text('choose category of event'),
+                    isExpanded: true,
+                    items: categoryOfEvent.map(buildMenuItem).toList(),
+                    onChanged: (value) => setState(() => this.value = value),
                   ),
                 ),
-                maxLength: 20,
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               TextField(
                 onChanged: (newValue) {
@@ -71,7 +87,7 @@ class _AddPageContentState extends State<AddPageContent> {
                   });
                 },
                 decoration: InputDecoration(
-                  hintText: "name of event",
+                  hintText: "type name of event",
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.circular(12),
@@ -136,7 +152,7 @@ class _AddPageContentState extends State<AddPageContent> {
                       ? null
                       : () {
                           FirebaseFirestore.instance.collection('events').add({
-                            'category': categoryOfEvent,
+                            'category': value,
                             'name': eventName,
                             'comment': comment,
                             'rating': rating,
