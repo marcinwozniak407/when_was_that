@@ -28,91 +28,100 @@ class EventsPageContent extends StatelessWidget {
 
           final documents = state.documents;
 
-          return ListView(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 30,
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: const Text("Events"),
+              actions: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+              ],
             ),
-            children: [
-              for (final document in documents)
-                Dismissible(
-                  key: ValueKey(document.id),
-                  onDismissed: (_) {
-                    FirebaseFirestore.instance
-                        .collection('events')
-                        .doc(document.id)
-                        .delete();
-                  },
-                  background: const DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.red),
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 32.0),
-                          child: Icon(Icons.delete),
-                        )),
-                  ),
-                  direction: DismissDirection.endToStart,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.lightGreen[300],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(document['category'].toUpperCase(),
-                              style: GoogleFonts.roboto(
-                                  fontSize: 15, color: Colors.black)),
-                          Container(
-                            decoration:
-                                const BoxDecoration(color: Colors.white70),
-                            margin: const EdgeInsets.symmetric(vertical: 5),
-                            padding: const EdgeInsets.all(5),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    document['name'],
-                                    style: GoogleFonts.robotoCondensed(
-                                        fontSize: 25,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                      document['rating'].toStringAsFixed(0),
-                                      style: GoogleFonts.robotoSlab(
-                                          fontSize: 25, color: Colors.black)),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Text(document['date'].toString(),
-                              style: GoogleFonts.robotoCondensed(
-                                  fontSize: 15, color: Colors.black)),
-                          if (document['comment'].isNotEmpty)
+            body: ListView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 30,
+              ),
+              children: [
+                for (final document in documents)
+                  Dismissible(
+                    key: ValueKey(document.id),
+                    onDismissed: (_) {
+                      FirebaseFirestore.instance
+                          .collection('events')
+                          .doc(document.id)
+                          .delete();
+                    },
+                    background: const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.red),
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 32.0),
+                            child: Icon(Icons.delete),
+                          )),
+                    ),
+                    direction: DismissDirection.endToStart,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.lightGreen[300],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(document['category'].toUpperCase(),
+                                style: GoogleFonts.roboto(
+                                    fontSize: 15, color: Colors.black)),
                             Container(
                               decoration:
                                   const BoxDecoration(color: Colors.white70),
                               margin: const EdgeInsets.symmetric(vertical: 5),
                               padding: const EdgeInsets.all(5),
-                              child: Text(document['comment'].toString(),
-                                  style: GoogleFonts.greatVibes(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                  )),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      document['name'],
+                                      style: GoogleFonts.robotoCondensed(
+                                          fontSize: 25,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                        document['rating'].toStringAsFixed(0),
+                                        style: GoogleFonts.robotoSlab(
+                                            fontSize: 25, color: Colors.black)),
+                                  ),
+                                ],
+                              ),
                             ),
-                        ],
+                            Text(document['date'].toString(),
+                                style: GoogleFonts.robotoCondensed(
+                                    fontSize: 15, color: Colors.black)),
+                            if (document['comment'].isNotEmpty)
+                              Container(
+                                decoration:
+                                    const BoxDecoration(color: Colors.white70),
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                padding: const EdgeInsets.all(5),
+                                child: Text(document['comment'].toString(),
+                                    style: GoogleFonts.greatVibes(
+                                      fontSize: 25,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           );
         },
       ),
