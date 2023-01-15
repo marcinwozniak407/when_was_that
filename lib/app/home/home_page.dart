@@ -23,10 +23,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('When was that?'),
-      ),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
           return const EventsPageContent();
