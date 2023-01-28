@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MySearchDelegate extends SearchDelegate {
@@ -5,49 +6,42 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) => IconButton(
-        onPressed: () => close(context, null), //close searchbar
+        onPressed: () => close(context, null),
         icon: const Icon(Icons.arrow_back),
       );
 
   @override
-  List<Widget>? buildActions(BuildContext context) => [
+  List<Widget> buildActions(BuildContext context) => [
         IconButton(
-          onPressed: () {
-            if (query.isEmpty) {
-              close(context, null);
-            } //close searchbar
-            else {
-              query = '';
-            }
-          },
-          icon: const Icon(Icons.clear),
-        ),
+            onPressed: () {
+              if (query.isEmpty) {
+                close(context, null);
+              } //close searchbar
+              else {
+                query = '';
+              }
+            },
+            icon: const Icon(Icons.clear))
       ];
 
   @override
-  Widget buildResults(BuildContext context) => Center(child: Text(query));
+  Widget buildResults(BuildContext context) => Center(
+        child: Text(query),
+      );
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = searchResults.where((searchResult) {
-      final result = searchResult.toLowerCase();
-      final input = query.toLowerCase();
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('events').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) return const Text('Loading...');
 
-      return result.contains(input);
-    }).toList();
+          final results =
+              snapshot.data?.docs.where((a) => a['name'].contains(query));
 
-    return ListView.builder(
-        itemCount: suggestions.length,
-        itemBuilder: (context, index) {
-          final suggestion = suggestions[index];
-
-          return ListTile(
-              title: Text(suggestion),
-              onTap: () {
-                query = suggestion;
-
-                showResults(context);
-              });
+          return ListView(
+            children: results!.map<Widget>((a) => Text(a['name'])).toList(),
+          );
         });
   }
 }
