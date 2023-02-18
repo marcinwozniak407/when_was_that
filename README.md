@@ -1,16 +1,6 @@
-# when_was_that
+WHEN WAS THAT
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app helps you remember the events you attended.
+When you enter a new event, you select the date you attended it, and give it a rating from 1 to 10.
+You can also select a category from five: film, performance, exhibition, concert or show.
+Optionally, you can also add a short comment about the event.
