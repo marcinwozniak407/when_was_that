@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:when_was_that/app/events/events_page_content.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
