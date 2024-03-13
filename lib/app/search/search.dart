@@ -35,6 +35,7 @@ class MySearchDelegate extends SearchDelegate {
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
+          if (snapshot.hasError) return const Text('Something went wrong...');
 
           final results =
               snapshot.data?.docs.where((a) => a['name'].contains(query));
