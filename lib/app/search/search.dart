@@ -36,6 +36,9 @@ class MySearchDelegate extends SearchDelegate {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
           if (snapshot.hasError) return const Text('Something went wrong...');
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: Text('Loading'));
+          }
 
           final results =
               snapshot.data?.docs.where((a) => a['name'].contains(query));
